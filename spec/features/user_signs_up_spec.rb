@@ -1,18 +1,12 @@
 require 'rails_helper'
 
 feature "User vists homepage" do
+  # background do
+  #   User.create(email: 'jd@email.com', password: '123456')
+  # end
   scenario "succesfully" do
-    visit new_user_session_path
+    sign_up('Jane Doe', 'jd@email.com', '123456')
 
-    click_on 'Sign up'
-
-    fill_in 'Name', with: 'Jane Doe'
-    fill_in 'Email', with: 'janedoe@example.com'
-    fill_in 'Password', with: '123456'
-    fill_in 'Password confirmation', with: '123456'
-
-    click_on 'Sign up'
-
-    expect(page).to have_content "Stay in touch"
+    expect(page).to have_content "Sign out"
   end
 end

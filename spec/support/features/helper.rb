@@ -1,13 +1,11 @@
 module Features
   def sign_up(name, email, password)
-    visit new_user_session_path
-
-    click_on 'Sign up'
+    visit new_user_registration_path
 
     fill_in 'Name', with: name
     fill_in 'Email', with: email
     fill_in 'Password', with: password
-    fill_in 'Password confirmation', with: '123456'
+    fill_in 'Password confirmation', with: password
 
     click_on 'Sign up'
   end
