@@ -20,7 +20,7 @@ class User < ApplicationRecord
     sent_requests.with_status('pending')
   end
 
-  def received_requests
+  def requests_received
     received_requests.with_status(['requested'])
   end
 

@@ -11,15 +11,15 @@ class Friendship < ApplicationRecord
     !find_by_user_id_and_friend_id(user, friend).nil?
   end
 
-  def self.send_requests(user, friend, status)
+  def self.send_requests(user, friend, str)
     unless user == friend || Friendship.exists?(user, friend)
-      create(user_id: user, friend_id: friend, status: 'requested')
+      create(user_id: user, friend_id: friend, status: str)
     end
   end
 
-  def self.receive_requests(user, friend, status)
+  def self.receive_requests(user, friend, str)
     unless user == friend || Friendship.exists?(user, friend)
-      create(friend_id: user, user_id: friend, status: [ 'accepted', 'declined' ])
+      create(friend_id: user, user_id: friend, status: str)
     end
   end
 
