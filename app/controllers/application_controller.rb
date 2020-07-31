@@ -12,6 +12,8 @@ class ApplicationController < ActionController::Base
       "#{friend.name} would like to be your friend."
       when 'pending'
       "You have requested friendship from #{friend.name}."
+      when 'declined'
+      "You have declined this friendship from #{friend.name}."
       when 'accepted'
       "#{friend.name} is your friend."
       end

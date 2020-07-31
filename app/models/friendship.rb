@@ -7,20 +7,21 @@ class Friendship < ApplicationRecord
 
   scope :with_status, ->(status) { where 'friendships.status = ?', status }
 
-  def self.exists?
-    !find_by_user_id_and_friend_id(user, friend).nil?
+  def self.exists?(u, f)
+    !find_by_user_id_and_friend_id(u, f).nil?
   end
 
-  def self.send_requests(user, friend, str)
-    unless user == friend || Friendship.exists?(user, friend)
-      create(user_id: user, friend_id: friend, status: str)
+  def self.send_requests(u, f, str)
+    unless u == f && Friendship.exists?(u,f)
+      create(user_id: u, friend_id: f, status: str)
     end
+    receive_requests(u, f, str)
   end
 
-  def self.receive_requests(user, friend, str)
-    unless user == friend || Friendship.exists?(user, friend)
-      create(friend_id: user, user_id: friend, status: str)
-    end
-  end
+  # def self.receive_requests(u, f, str)
+  #   if user != friend || where(u, f)
+  #     create(friend_id: u, user_id: f, status: str)
+  #   end
+  # end
 
 end
