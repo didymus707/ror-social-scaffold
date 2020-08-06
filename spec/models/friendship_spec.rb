@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Friendship, type: :model do
   let(:f) do
-    User.create(id: 1, name: 'Jane Doe', email: 'jd@email.com', 
+    User.create(id: 1, name: 'Jane Doe', email: 'jd@email.com',
                 password: '123456', gravatar_url: 'http://www.nil.com')
-    User.create(id: 2, name: 'Joe Blow', email: 'jb@email.com', 
+    User.create(id: 2, name: 'Joe Blow', email: 'jb@email.com',
                 password: '123456', gravatar_url: 'http://www.nil.com')
     Friendship.new(sender_id: 1, receiver_id: 2, status: 'requested')
   end

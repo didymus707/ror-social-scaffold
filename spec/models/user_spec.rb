@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   let(:u1) do
-    User.create(id: 1, name: 'Jane Doe', email: 'jd@email.com', 
+    User.create(id: 1, name: 'Jane Doe', email: 'jd@email.com',
                 password: '123456', gravatar_url: 'http://www.nil.com')
   end
 

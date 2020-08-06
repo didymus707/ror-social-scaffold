@@ -54,5 +54,4 @@ class User < ApplicationRecord
   def send_a_request(id)
     senders.build(receiver_id: id, status: 'requested')
   end
-
 end
