@@ -22,7 +22,7 @@ class FriendshipsController < ApplicationController
   end
 
   def accept_request
-    @friendship = current_user.accept_the_request(params[:user_id])
+    @friendship = current_user.accept_the_request('accepted')
 
     check = @friendship.last 
     if check.updated_at > check.created_at
@@ -34,7 +34,7 @@ class FriendshipsController < ApplicationController
   end
 
   def decline_request
-    @friendship = current_user.decline_the_request(params[:user_id])
+    @friendship = current_user.decline_the_request('declined')
     
     check = @friendship.last 
     check.destroy

@@ -42,23 +42,25 @@ class User < ApplicationRecord
   end
 
   def pending_requests
-    senders.not_friends
+    a = senders.not_friends.pluck(:receiver_id)
+    User.where(id: a)
   end
 
   def received_requests
-    receivers.not_friends
+    b = receivers.not_friends.pluck(:sender_id)
+    User.where(id: b)
   end
 
   def send_a_request(id)
     senders.build(receiver_id: id, status: 'requested')
   end
 
-  def accept_the_request(id)
-    receivers.update(sender_id: id, status: 'accepted')
+  def accept_the_request(status)
+    receivers.update(status: status)
   end
 
-  def decline_the_request(id)
-    receivers.update(sender_id: id, status: 'declined')
+  def decline_the_request(status)
+    receivers.update(status: status)
   end
 
   # Friendship.sending_by_user(1).with_status('pending')
