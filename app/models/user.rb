@@ -35,9 +35,9 @@ class User < ApplicationRecord
 
   def viable_friend?(friend)
     if request_received?(friend) || request_sent?(friend) || friend?(friend)
-      return false
+      false
     else
-      return true
+      true
     end
   end
 
@@ -63,6 +63,10 @@ class User < ApplicationRecord
     receivers.update(status: status)
   end
 
-  # Friendship.sending_by_user(1).with_status('pending')
-
+  def our_posts
+    b = a = receivers.friends.pluck(:sender_id)
+    b = senders.friends.pluck(:receiver_id)
+    c = a + b
+    Post.ordered_by_most_recent.includes(:user).where(id: c)
+  end
 end

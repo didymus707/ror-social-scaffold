@@ -6,5 +6,12 @@ class Post < ApplicationRecord
 
   scope :ordered_by_most_recent, -> { order(created_at: :desc) }
   has_many :comments, dependent: :destroy
-  has_many :likes, dependent: :destroy
+  has_many :post_likes, dependent: :destroy
+
+  def our_posts
+    a = receivers.friends.pluck(:sender_id)
+    b = senders.friends.pluck(:receiver_id)
+    c = a + b
+    Post.ordered_by_most_recent.includes(:user).where(id: c)
+  end
 end

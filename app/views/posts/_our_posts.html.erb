@@ -1,0 +1,9 @@
+<div class="pr">
+  <% unless @our_posts.empty? %>
+    <ul class="our_posts">
+      <% @our_posts.each do |post| %>
+        <%= post.content %>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
