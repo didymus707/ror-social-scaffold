@@ -36,7 +36,7 @@ class FriendshipsController < ApplicationController
   def decline_request
     @friendship = current_user.decline_the_request('declined')
     
-    check = @friendship.last 
+    check = Friendship.find_by_sender_id_and_receiver_id_and_status(params[:user_id], current_user.id, 'declined')
     check.destroy
     flash[:success] = 'Friend Request Declined!'
     redirect_back(fallback_location: root_path)

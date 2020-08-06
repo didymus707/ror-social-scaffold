@@ -1,63 +1,9 @@
 <section class="users-section">
-  <div class="pr">
-    <% unless @friends.empty? %>
-      <h3>My Friends</h3>
-      <ul class="all_friends">
-        <% @friends.each do |user| %>
-          <li>
-              <%= user.name %>
-              <span class="profile-link">
-                <%= link_to 'See Profile',  user_path(user), class: 'profile-link' %>
-              </span>
-            </li>
-        <% end %>
-      </ul>
-    <% end %>
-  </div>
+  <%= render 'partials/friends'%>
+  <%= render 'partials/pending_requests' %>
+  <%= render 'partials/received_requests' %>
 
-  <div class="pr">
-    <% unless @pending_requests.empty? %>
-      <h3>Pending Requests</h3>
-      <ul class="pending_requests">
-        <% @pending_requests.each do |user| %>
-          <li>
-            <%= user.name %>
-            <span class="profile-link">
-              <%= link_to 'See Profile',  user_path(user), class: 'profile-link' %>
-              <small>Pending Request</small>
-            </span>
-          </li>
-        <% end %>
-      </ul>
-    <% end %>
-  </div>
-
-  <div class="rr">
-    <% unless @received_requests.empty? %>
-      <h3>Received Requests</h3>
-      <ul class="received_requests">
-        <% @received_requests.each do |user| %>
-        <% unless current_user.friend?(user) %>
-          <li>
-            <%= user.name %>
-            <span class="profile-link">
-              <%= link_to 'See Profile',  user_path(user), class: 'profile-link' %>
-              <%# if current_user.request_received?(user) %>
-                <%# unless current_user.friend?(user)  %>
-                  <%= link_to accept_request_user_friendships_path(user), data: {confirm: "Are you sure about this?" } do %>
-                    <button>Accept Request</button>
-                  <% end %>
-                <%# end %>
-              <%# end %>
-            </span>
-          </li>
-        <% end %>
-        <% end %> 
-      </ul>
-    <% end %>
-  </div>
-
-  <div>
+  <div class="other_user">
     <h3>Other Users</h3>
     <ul class="users-list">
       <% @users.each do |user| %>
