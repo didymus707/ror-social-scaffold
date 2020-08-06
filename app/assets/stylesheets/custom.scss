@@ -278,6 +278,11 @@ form {
 .users-section {
   width: 100%;
   margin: 10px;
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+  justify-content: space-evenly;
+
 
   .users-list li {
     margin-bottom: 16px;

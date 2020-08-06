@@ -55,18 +55,4 @@ class User < ApplicationRecord
     senders.build(receiver_id: id, status: 'requested')
   end
 
-  def accept_the_request(status)
-    receivers.update(status: status)
-  end
-
-  def decline_the_request(status)
-    receivers.update(status: status)
-  end
-
-  def our_posts
-    b = a = receivers.friends.pluck(:sender_id)
-    b = senders.friends.pluck(:receiver_id)
-    c = a + b
-    Post.ordered_by_most_recent.includes(:user).where(id: c)
-  end
 end
