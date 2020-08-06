@@ -14,6 +14,13 @@ class User < ApplicationRecord
   has_many :senders, foreign_key: 'sender_id', class_name: 'Friendship'
   has_many :receivers, foreign_key: 'receiver_id', class_name: 'Friendship'
 
+  def all_friends
+    a = receivers.friends.pluck(:sender_id)
+    b = senders.friends.pluck(:receiver_id)
+    c = a + b
+    User.where(id: c)
+  end
+
   def friend?(user)
     receivers.friends.where(sender_id: user).exists? || senders.friends.where(receiver_id: user).exists?
   end
@@ -35,7 +42,11 @@ class User < ApplicationRecord
   end
 
   def pending_requests
-    receivers.not_friends + senders.not_friends
+    senders.not_friends
+  end
+
+  def received_requests
+    receivers.not_friends
   end
 
   def send_a_request(id)

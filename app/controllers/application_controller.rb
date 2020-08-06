@@ -16,7 +16,6 @@ class ApplicationController < ActionController::Base
   #     "You have declined this friendship from #{friend.name}."
   #     when 'accepted'
   #     "#{friend.name} is your friend."
-  #     end
   #   end
   # end
 
