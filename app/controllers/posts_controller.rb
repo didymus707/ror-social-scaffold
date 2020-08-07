@@ -24,6 +24,7 @@ class PostsController < ApplicationController
     a = current_user.receivers.friends.pluck(:sender_id)
     b = current_user.senders.friends.pluck(:receiver_id)
     c = a + b
+    c << current_user.id
     @timeline_posts ||= Post.all.ordered_by_most_recent.includes(:user).where(id: c)
   end
 
