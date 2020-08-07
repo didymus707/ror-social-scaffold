@@ -16,12 +16,11 @@ module ApplicationHelper
     end
   end
 
-  def not_user_n_friends_with(user, _link_text1, _link_text2)
-    unless user.name == current_user.name
-      if current_user.viable_friend?(user)
-        render partial: 'partials/other_users', locals: { user: user, link_text1: link_text1, link_text2: link_text2 }
-      end
-    end
+  def not_user_n_friends_with(user, link_text1, link_text2)
+    return if user.name == current_user.name
+    return unless current_user.viable_friend?(user)
+
+    render partial: 'partials/other_users', locals: { user: user, link_text1: link_text1, link_text2: link_text2 }
   end
 
   def empty_requests

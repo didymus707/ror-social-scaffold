@@ -7,7 +7,6 @@ AllCops:
     - "Rakefile"
     - "README.md"
     - "node_modules/**/*"
-    - "app/helpers/application_helper"
 
 
   DisplayCopNames: true
