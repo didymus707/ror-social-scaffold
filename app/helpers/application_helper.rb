@@ -20,18 +20,16 @@ module ApplicationHelper
     unless user.name == current_user.name
       if current_user.viable_friend?(user)
         if current_page?(users_path)
-          render partial: 'partials/other_users', locals: {user: user, link_text_1: link_text_1, link_text_2: link_text_2}
+          render partial: 'partials/other_users', locals: { user: user, link_text_1: link_text_1, link_text_2: link_text_2 }
         else
-          render partial: 'partials/for_show', locals: {user: user, link_text_1: link_text_1, link_text_2: link_text_2}
+          render partial: 'partials/for_show', locals: { user: user, link_text_1: link_text_1, link_text_2: link_text_2 }
         end
       end
     end
   end
 
   def empty_requests
-    unless @received_requests.empty?
-      render partial: 'partials/rr_partial'
-    end
+    render partial: 'partials/rr_partial' unless @received_requests.empty?
   end
 
   # def friends_with(user)

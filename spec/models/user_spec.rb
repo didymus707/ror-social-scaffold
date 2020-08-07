@@ -35,7 +35,7 @@ RSpec.describe User, type: :model do
   end
 
   describe 'Associations' do
-    it { should have_many(:senders) }
-    it { should have_many(:receivers) }
+    it { should have_many(:friendships) }
+    it { should have_many(:inverted_friendships) }
   end
 end
