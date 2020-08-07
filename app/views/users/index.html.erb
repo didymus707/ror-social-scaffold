@@ -7,21 +7,7 @@
     <h3>Other Users</h3>
     <ul class="users-list">
       <% @users.each do |user| %>
-        <%# <%= not_user_n_friends_with(user, user_path(user.id), user_friendships_path(user), 'See Profile', 'Add Friend') %>
-        <% unless user.name == current_user.name %>
-          <% if current_user.viable_friend?(user) %> 
-            <li>
-              <h4><%= user.name %>
-                <span class="profile-link">
-                  <%= link_to 'See Profile',  user_path(user), class: 'profile-link' %>              
-                    <%= link_to user_friendships_path(user), method: :post, data: {confirm: "Are you sure you want to add this friend?" } do %>
-                      <button>Add Friend</button>
-                    <% end %>
-                </span>
-              </h5>
-            </li>
-          <% end %>
-        <% end %>
+        <%= not_user_n_friends_with(user, 'See Profile', 'Add Friend') %>
       <% end %>
     </ul>
   </div>

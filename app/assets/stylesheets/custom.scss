@@ -327,6 +327,24 @@ form {
   }
 }
 
+.show-div {
+  display: flex;
+  width: 100%;
+  align-items: center;
+
+  h2 {
+    margin-right: 10px;
+  }
+
+  span {
+    width: 36%;
+
+    form {
+      width: 100%;
+    }
+  }
+}
+
 @media only screen and (min-width: 480px) {
   form {
     width: 60%;

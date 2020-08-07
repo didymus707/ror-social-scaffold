@@ -16,28 +16,21 @@ module ApplicationHelper
     end
   end
 
-  def not_user_n_friends_with(user, link_text_1, link_path_1, link_path_2, link_text_2)
+  def not_user_n_friends_with(user, link_text_1, link_text_2)
     unless user.name == current_user.name
       if current_user.viable_friend?(user)
-        if current_page?(user_path(user))
-          content_tag_name(link_text_1, link_path_1, link_path_2, link_text_2)
-        elsif current_page?(users_path)
-          content_tag(:li, content_tag(:h4, 'user.name')) do
-            content_tag_name(link_text_1, link_path_1, link_path_2, link_text_2)
-          end
+        if current_page?(users_path)
+          render partial: 'partials/other_users', locals: {user: user, link_text_1: link_text_1, link_text_2: link_text_2}
+        else
+          render partial: 'partials/for_show', locals: {user: user, link_text_1: link_text_1, link_text_2: link_text_2}
         end
       end
     end
   end
 
-  def content_tag_name(link_text_1, link_path_1, link_path_2, link_text_2)
-    content_tag(:span) do
-      link_to(link_text_1, link_path_1, class: 'profile-link' )
-    end
-    content_tag(:span) do
-      link_to(link_path_2, method: :post, data: {confirm: "Are you sure you want to add this friend?" } ) do
-        button_tag link_text_2
-      end 
+  def empty_requests
+    unless @received_requests.empty?
+      render partial: 'partials/rr_partial'
     end
   end
 

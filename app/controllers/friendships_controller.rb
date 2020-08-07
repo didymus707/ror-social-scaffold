@@ -14,7 +14,7 @@ class FriendshipsController < ApplicationController
   end
 
   def accept_request
-    @friendship = Friendship.find_by_sender_id_and_receiver_id(params[:user_id], current_user.id)
+    @friendship = Friendship.find_by_user_id_and_friend_id(params[:user_id], current_user.id)
 
     @friendship.status = 'accepted'
     if @friendship.save
@@ -26,7 +26,7 @@ class FriendshipsController < ApplicationController
   end
 
   def decline_request
-    @friendship = Friendship.find_by_sender_id_and_receiver_id(params[:user_id], current_user.id)
+    @friendship = Friendship.find_by_user_id_and_friend_id(params[:user_id], current_user.id)
 
     @friendship.status = 'declined'
     @friendship.destroy

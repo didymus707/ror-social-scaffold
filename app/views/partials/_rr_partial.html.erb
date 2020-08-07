@@ -1,0 +1,21 @@
+<h3>Received Requests</h3>
+<ul class="received_requests">
+  <% @received_requests.each do |user| %>
+    <% unless current_user.friend?(user) %>
+      <li>
+        <h4>
+          <%= user.name %>
+          <span class="profile-link">
+            <%= link_to 'See Profile',  user_path(user), class: 'profile-link' %>
+              <%= link_to accept_request_user_friendships_path(user), data: {confirm: "Are you sure about this?" } do %>
+                <button>Accept</button>
+              <% end %>
+              <%= link_to decline_request_user_friendships_path(user), data: {confirm: "Are you sure about this?" } do %>
+                <button>Decline</button>
+              <% end %>
+          </span>
+        </h4>
+      </li>
+    <% end %>
+  <% end %> 
+</ul>
