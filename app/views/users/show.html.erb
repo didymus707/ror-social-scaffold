@@ -1,14 +1,6 @@
 <section class="user-section">
   <h2><%= @user.name %>
-    <% unless @user.name == current_user.name %>
-      <% if current_user.viable_friend?(@user) %> 
-        <span>            
-          <%= link_to user_friendships_path(@user), method: :post, data: {confirm: "Are you sure you want to add this friend?" } do %>
-            <button>Add Friend</button>
-          <% end %>
-        </span>
-      <% end %>
-    <% end %>
+    <%= not_user_n_friends_with(@user, user_path(@user), user_friendships_path(@user), 'See Profile', 'Add Friend') %>
   </h2>
   <article class="timeline">
     <h3>Recent posts:</h3>

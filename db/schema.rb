@@ -35,14 +35,14 @@ ActiveRecord::Schema.define(version: 2020_08_05_220824) do
   end
 
   create_table "friendships", force: :cascade do |t|
-    t.bigint "sender_id", null: false
-    t.bigint "receiver_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "friend_id", null: false
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["receiver_id"], name: "index_friendships_on_receiver_id"
-    t.index ["sender_id", "receiver_id"], name: "index_friendships_on_sender_id_and_receiver_id", unique: true
-    t.index ["sender_id"], name: "index_friendships_on_sender_id"
+    t.index ["friend_id"], name: "index_friendships_on_friend_id"
+    t.index ["user_id", "friend_id"], name: "index_friendships_on_user_id_and_friend_id", unique: true
+    t.index ["user_id"], name: "index_friendships_on_user_id"
   end
 
   create_table "post_likes", force: :cascade do |t|
@@ -75,6 +75,5 @@ ActiveRecord::Schema.define(version: 2020_08_05_220824) do
   end
 
   add_foreign_key "comment_likes", "comments"
-  add_foreign_key "friendships", "users", column: "receiver_id"
-  add_foreign_key "friendships", "users", column: "sender_id"
+  add_foreign_key "friendships", "users", column: "friend_id"
 end

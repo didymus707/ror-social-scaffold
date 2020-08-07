@@ -4,11 +4,13 @@
     <ul class="pending_requests">
       <% @pending_requests.each do |user| %>
         <li>
-          <%= user.name %>
-          <span class="profile-link">
-            <%= link_to 'See Profile',  user_path(user), class: 'profile-link' %>
-            <small>Pending Request</small>
-          </span>
+          <h4>
+            <%= user.name %>
+            <span class="profile-link">
+              <%= link_to 'See Profile',  user_path(user), class: 'profile-link' %>
+              <small>Pending Request</small>
+            </span>
+          </h4>
         </li>
       <% end %>
     </ul>

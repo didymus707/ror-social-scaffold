@@ -1,8 +1,8 @@
 class Friendship < ApplicationRecord
-  belongs_to :sender, class_name: 'User', foreign_key: 'sender_id'
-  belongs_to :receiver, class_name: 'User', foreign_key: 'receiver_id'
+  belongs_to :user
+  belongs_to :friend, class_name: 'User', foreign_key: 'friend_id'
 
-  validates_presence_of :sender_id, :receiver_id, uniqueness: true
+  validates_presence_of :user_id, :friend_id, uniqueness: true
   validates_presence_of :status, acceptance: { accept: %w[requested accepted declined] }
 
   scope :with_status, ->(status) { where 'status = ?', status }
