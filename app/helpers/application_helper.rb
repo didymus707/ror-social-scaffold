@@ -16,14 +16,10 @@ module ApplicationHelper
     end
   end
 
-  def not_user_n_friends_with(user, link_text_1, link_text_2)
+  def not_user_n_friends_with(user, _link_text1, _link_text2)
     unless user.name == current_user.name
       if current_user.viable_friend?(user)
-        if current_page?(users_path)
-          render partial: 'partials/other_users', locals: { user: user, link_text_1: link_text_1, link_text_2: link_text_2 }
-        else
-          render partial: 'partials/for_show', locals: { user: user, link_text_1: link_text_1, link_text_2: link_text_2 }
-        end
+        render partial: 'partials/other_users', locals: { user: user, link_text1: link_text1, link_text2: link_text2 }
       end
     end
   end
@@ -31,21 +27,4 @@ module ApplicationHelper
   def empty_requests
     render partial: 'partials/rr_partial' unless @received_requests.empty?
   end
-
-  # def friends_with(user)
-  #   unless current_user.friend?(user) %>
-  #     <li>
-  #       <%= user.name %>
-  #       <span class="profile-link">
-  #         <%= link_to 'See Profile',  user_path(user), class: 'profile-link' %>
-  #           <%= link_to accept_request_user_friendships_path(user), data: {confirm: "Are you sure about this?" } do %>
-  #             <button>Accept</button>
-  #           <% end %>
-  #           <%= link_to decline_request_user_friendships_path(user), data: {confirm: "Are you sure about this?" } do %>
-  #             <button>Decline</button>
-  #           <% end %>
-  #       </span>
-  #     </li>
-  #   <% end %>
-  # end
 end
