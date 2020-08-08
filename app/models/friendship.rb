@@ -40,7 +40,7 @@ class Friendship < ApplicationRecord
     request = find_by_user_id_and_friend_id(user, friend)
     request.status = 'accepted'
     request.updated_at = updated_at
-    # request.save
+    request.save
   end
 
 end

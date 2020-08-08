@@ -4,7 +4,7 @@ class FriendshipsController < ApplicationController
     return unless current_user.viable_friend?(User.find(params[:user_id]))
 
     # @friendship = current_user.send_a_request(params[:user_id])
-    
+
     @friendship = Friendship.request(current_user.id, params[:user_id] )
 
     if @friendship.save
@@ -16,10 +16,11 @@ class FriendshipsController < ApplicationController
   end
 
   def accept_request
-    @friendship = Friendship.accept(current_user.id, params[:user_id])
+    Friendship.accept(current_user.id, params[:user_id])
 
     # @friendship.status = 'accepted'
-    if @friendship.save
+    friendship = Friendship.find_by_user_id_and_friend_id(current_user, params[:user_id])
+    if friendship.updated_at > friendship.created_at
       flash[:notice] = 'Friend Request Accepted!'
     else
       flash[:danger] = 'Friend Request could not be accepted!'
