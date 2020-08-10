@@ -5,7 +5,7 @@ class FriendshipsController < ApplicationController
 
     # @friendship = current_user.send_a_request(params[:user_id])
 
-    @friendship = Friendship.request(current_user.id, params[:user_id] )
+    @friendship = Friendship.request(current_user.id, params[:user_id])
 
     if @friendship.save
       flash[:notice] = 'Friend request sent!'
