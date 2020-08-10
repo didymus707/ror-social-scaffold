@@ -18,7 +18,6 @@ class FriendshipsController < ApplicationController
   def accept_request
     Friendship.accept(current_user.id, params[:user_id])
 
-    # @friendship.status = 'accepted'
     friendship = Friendship.find_by_user_id_and_friend_id(current_user, params[:user_id])
     if friendship.updated_at > friendship.created_at
       flash[:notice] = 'Friend Request Accepted!'
@@ -29,10 +28,12 @@ class FriendshipsController < ApplicationController
   end
 
   def decline_request
-    Friendship.decline(params[:user_id], current_user.id)
-
-    # @friendship.status = 'declined'
-    # @friendship.destroy
+    a = Friendship.find_by_user_id_and_friend_id(params[:user_id], current_user.id)
+    b = Friendship.find_by_user_id_and_friend_id(current_user.id, params[:user_id])
+    a.status = 'declined'
+    b.status = 'declined'
+    a.destroy
+    b.destroy
     flash[:notice] = 'Friend Request Declined!'
     redirect_back(fallback_location: root_path)
   end

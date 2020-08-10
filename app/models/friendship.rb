@@ -30,13 +30,6 @@ class Friendship < ApplicationRecord
     end
   end
 
-  def self.decline(user, friend)
-    transaction do
-      destroy(find_by_user_id_and_friend_id(user, friend))
-      destroy(find_by_user_id_and_friend_id(friend, user))
-    end
-  end
-
   def self.accept_one_part(user, friend, updated_at)
     request = find_by_user_id_and_friend_id(user, friend)
     request.status = 'accepted'

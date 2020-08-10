@@ -17,8 +17,10 @@ feature 'Friendships: User can' do
   end
 
   scenario 'accept requests successfully' do
-    fr1 = Friendship.new(user_id: User.first.id, friend_id: User.last.id, status: 'requested')
+    fr1 = Friendship.new(user_id: User.first.id, friend_id: User.last.id, status: 'pending')
+    fr2 = Friendship.new(user_id: User.last.id, friend_id: User.first.id, status: 'requested')
     fr1.save
+    fr2.save
 
     sign_in_with 'joeblow@email.com', '123456'
     click_on 'All users'
@@ -29,8 +31,10 @@ feature 'Friendships: User can' do
   end
 
   scenario 'decline requests successfully' do
-    fr1 = Friendship.new(user_id: User.first.id, friend_id: User.last.id, status: 'requested')
+    fr1 = Friendship.new(user_id: User.first.id, friend_id: User.last.id, status: 'pending')
+    fr2 = Friendship.new(user_id: User.last.id, friend_id: User.first.id, status: 'requested')
     fr1.save
+    fr2.save
 
     sign_in_with 'joeblow@email.com', '123456'
     click_on 'All users'
