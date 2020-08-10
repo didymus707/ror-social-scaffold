@@ -6,17 +6,18 @@ class Friendship < ApplicationRecord
   validates_presence_of :status, acceptance: { accept: %w[pending, requested accepted declined] }
 
   scope :friends, -> { where(status: 'accepted') }
-  scope :not_friends, -> { where(status: ['requested', 'pending']) }
+  scope :pending_request, -> { where(status: 'pending') }
+  scope :received_request, -> { where(status: 'requested') }
 
   def self.exists?(user, friend)
     not find_by_user_id_and_friend_id(user, friend).nil?
   end
 
-  def self.request(sender, friend)
-    unless sender == friend || Friendship.exists?(sender, friend)
+  def self.request(user, friend)
+    unless user == friend || Friendship.exists?(user, friend)
       transaction do
-        create(user_id: sender, friend_id: friend, status: 'pending')
-        create(user_id: friend, friend_id: sender, status: 'requested')
+        create(user_id: user, friend_id: friend, status: 'pending')
+        create(user_id: friend, friend_id: user, status: 'requested')
       end
     end
   end
