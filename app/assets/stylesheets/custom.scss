@@ -278,6 +278,11 @@ form {
 .users-section {
   width: 100%;
   margin: 10px;
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+  justify-content: space-evenly;
+
 
   .users-list li {
     margin-bottom: 16px;
@@ -319,6 +324,24 @@ form {
 
   ul {
     color: #f00;
+  }
+}
+
+.show-div {
+  display: flex;
+  width: 100%;
+  align-items: center;
+
+  h2 {
+    margin-right: 10px;
+  }
+
+  span {
+    width: 36%;
+
+    form {
+      width: 100%;
+    }
   }
 }
 

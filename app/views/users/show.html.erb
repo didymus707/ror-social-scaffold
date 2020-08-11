@@ -1,5 +1,8 @@
 <section class="user-section">
-  <h2><%= "Name: #{@user.name}" %></h2>
+  <div class='show-div'>
+    <h2><%= @user.name %></h2>
+    <%= not_user_n_friends_with(@user, 'Add Friend') %>
+  </div>
   <article class="timeline">
     <h3>Recent posts:</h3>
     <ul class="posts">

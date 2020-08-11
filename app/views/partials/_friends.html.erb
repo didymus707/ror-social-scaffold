@@ -1,0 +1,15 @@
+<div class="fr">
+  <% unless @friends.empty? %>
+    <h3>My Friends</h3>
+    <ul class="all_friends">
+      <% @friends.each do |user| %>
+        <li>
+          <%= user.name %>
+          <span class="profile-link">
+            <%= link_to 'See Profile',  user_path(user), class: 'profile-link' %>
+          </span>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>
