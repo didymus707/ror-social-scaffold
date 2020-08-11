@@ -1,5 +1,16 @@
 <section class="user-section">
-  <h2><%= "Name: #{@user.name}" %></h2>
+  <div class='show-div'>
+    <h2><%= @user.name %></h2>
+      <% unless @user.name == current_user.name %>
+        <% if current_user.viable_friend?(@user) %>
+          <span class="profile-link">
+            <%= link_to user_friendships_path(@user), method: :post, data: {confirm: "Are you sure you want to add this friend?" } do %>
+              <%= button_to 'Add Friend' %>
+            <% end %>
+          </span>
+        <% end %>
+      <% end %>
+  </div>
   <article class="timeline">
     <h3>Recent posts:</h3>
     <ul class="posts">

@@ -1,4 +1,4 @@
-class Like < ApplicationRecord
+class PostLike < ApplicationRecord
   validates :user_id, uniqueness: { scope: :post_id }
 
   belongs_to :user

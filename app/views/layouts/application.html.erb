@@ -19,7 +19,14 @@
         </div>
       </div>
       <% if current_user %>
-        <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+      <div>
+        <div >
+           <%= link_to 'Profile', user_path(current_user), class: 'profile-link' %>
+        </div>
+        <div>
+          <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+        </div>
+      </div>
       <% else %>
         <%= link_to 'Sign in', user_session_path %>
       <% end %>
