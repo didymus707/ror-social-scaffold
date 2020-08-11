@@ -42,12 +42,12 @@ class User < ApplicationRecord
   end
 
   def pending_requests
-    a = friendships.not_friends.pluck(:friend_id)
+    a = friendships.pending_request.pluck(:friend_id)
     User.where(id: a)
   end
 
   def received_requests
-    b = inverted_friendships.not_friends.pluck(:user_id)
+    b = friendships.received_request.pluck(:friend_id)
     User.where(id: b)
   end
 
