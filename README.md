@@ -6,6 +6,8 @@
 
 - Ruby v2.7.0
 - Ruby on Rails v5.2.4
+- Capybara
+- RSpec
 
 ## Live Demo
 
@@ -49,21 +51,11 @@ Start server with:
 
 Open `http://localhost:3000/` in your browser.
 
-### Run tests
 
-```
-    rpsec --format documentation
-```
+## Author
 
-> Tests will be added by Microverse students. There are no tests for initial features in order to make sure that students write all tests from scratch.
-
-### Deployment
-
-TBA
-
-## Authors
-
-TBA
+👤 **Adewale Orotayo** 
+ [@didymus707](https://github.com/didymus707)
 
 ## 🤝 Contributing
 
@@ -77,9 +69,6 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-TBA
+- [Microverse](https://www.microverse.org)
 
-## 📝 License
-
-TBA
 
