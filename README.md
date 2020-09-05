@@ -1,12 +1,11 @@
 # Scaffold for social media app with Ruby on Rails
 
-> This purpose of this project is to practice all skills and techniques learnt during the course of Rails to build this social media application. And in this project, features like, creating posts, liking a post, adding friends were implemented.
+> The purpose of this project is to practice all skills and techniques learned during the course of Rails to build this social media application. And in this project, features like, creating posts, liking a post, adding friends were implemented.
 
-____
-Entity Representation of the Database
+
 <h3 align="center">Data Model Representation</h3>
 <p align="center">
-  <img src="docs/erd.png" style="center">
+  <img src="docs/erd.svg" style="center">
 </p>
 
 ## Built With
@@ -16,9 +15,18 @@ Entity Representation of the Database
 - Capybara
 - RSpec
 
-## Live Demo
+## Deployment & Live Demo
+This app was deployed on heroku and the demo of the project can be found below
 
+```
 [circle](https://murmuring-hamlet-08654.herokuapp.com/users/sign_in)
+```
+
+### Run tests
+
+```
+    rpsec --format documentation
+```
 
 
 ## Getting Started

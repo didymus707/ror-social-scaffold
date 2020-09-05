@@ -30,4 +30,16 @@ module ApplicationHelper
   def empty_requests
     render partial: 'partials/rr_partial' unless @received_requests.empty?
   end
+
+  def friends_with_user(user)
+    render partial: 'partials/removing_logic/friends_with_user', locals: { user: user } unless current_user.friend?(user)
+  end
+
+  def empty_friends
+    render 'partials/removing_logic/empty_friends' unless @friends.empty?
+  end
+
+  def empty_pending_requests
+    render partial: 'partials/removing_logic/empty_pending_requests' unless @pending_requests.empty?
+  end
 end
