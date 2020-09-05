@@ -32,7 +32,9 @@ module ApplicationHelper
   end
 
   def friends_with_user(user)
-    render partial: 'partials/removing_logic/friends_with_user', locals: { user: user } unless current_user.friend?(user)
+    return if current_user.friend?(user)
+
+    render partial: 'partials/removing_logic/friends_with_user', locals: { user: user }
   end
 
   def empty_friends
