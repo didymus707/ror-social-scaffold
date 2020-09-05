@@ -3,8 +3,6 @@ class FriendshipsController < ApplicationController
     return if current_user.id == params[:user_id]
     return unless current_user.viable_friend?(User.find(params[:user_id]))
 
-    # @friendship = current_user.send_a_request(params[:user_id])
-
     @friendship = Friendship.request(current_user.id, params[:user_id])
 
     if @friendship.save
